@@ -1,7 +1,8 @@
 /**
  * Created by Devon on 2/11/2015.
  */
-var app = angular.module("blogApp",["firebase"]);
+
+var app = angular.module("blogApp",["firebase", "ngAnimate"]);
 
 app.controller("MainController",["$scope","$firebase", function($scope, $firebase){
     $scope.ordering = "date";
@@ -21,3 +22,4 @@ app.controller("MainController",["$scope","$firebase", function($scope, $firebas
         $scope.post = {};
     }
 }]);
+
