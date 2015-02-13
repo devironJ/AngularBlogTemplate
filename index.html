@@ -103,94 +103,83 @@
             <option value="-date">Oldest</option>
         </select>
         <hr>
-        <button ng-click="ShowHide=!ShowHide">Show/Hide Editor</button>
         <br><br>
-        <div class="editor, showHideAnimation" ng-init="ShowHide = false" ng-hide="ShowHide">
-            <button ng-click="addPost()">Add Post</button>
-            New Title: <input type='text' ng-model="post.title">
-            New Subtitle: <input type='text' ng-model="post.subtitle">
-            <br>
-            Body: <textarea rows="8" columns="200" type="text" ng-model="post.body"></textarea>
-        </div>
+    </div>
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="post-preview">
+            <div class="col-md-2 editor">
+                <button ng-click="ShowHide=!ShowHide">Show/Hide Editor</button><br>
+                <div class="showHideAnimation" ng-init="ShowHide = false" ng-hide="ShowHide">
+                    <button ng-click="addPost()">Add Post</button><br>
+                    New Title:<br> <input type='text' ng-model="post.title"><br>
+                    New Subtitle: <br><input type='text' ng-model="post.subtitle"><br>
+                    Body: <br><textarea rows="8" columns="80" type="text" ng-model="post.body"></textarea>
+                </div>
+            </div>
+            <div class="post-preview">
                 <h2 class=""post-title">
-                    {{post.title}}
+                {{post.title}}
                 </h2>
                 <h3 class="post-subtitle">
                     {{post.subtitle}}
                     <br>
                 </h3>
                 <p>{{post.body}}</p>
-                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="container" ng-controller="MainController">
                 <!--my-hide-animation and ng-hide-->
-                <div class="post-preview, my-hide-animation" ng-init = "isHidden=false"  ng-hide="isHidden" ng-repeat= "post in myPosts | orderBy: ordering"  >
-                    <br>
-                    <!--<div ng-hide="post.hide">-->
-                    <!--<button ng-click="hide(post)">Hide</button>-->
+            <div class="post-preview, my-hide-animation" ng-init = "isHidden=false"  ng-hide="isHidden" ng-repeat= "post in myPosts | orderBy: ordering">
+                <br>
+                <!--<div ng-hide="post.hide">-->
+                <!--<button ng-click="hide(post)">Hide</button>-->
 
-                    <!--<div ng-class="{slideHide: isHidden}">-->
-                    <!--<button ng-click="isHidden = true;">Hide</button>-->
+                <!--<div ng-class="{slideHide: isHidden}">-->
+                <!--<button ng-click="isHidden = true;">Hide</button>-->
 
-                    <button ng-click="isHidden= true">Hide</button>
-                        <h2 class="post-title">
-                            {{post.title}}
-                        </h2>
-                        <h3 class="post-subtitle">
-                            {{post.subtitle}}
-                        </h3>
-                    <p class="post-meta">{{post.date}}</p>
-                    <p>{{post.body}}</p>
-                </div>
-
-                <hr>
-
-
-
-                <!--<div class="post-preview">-->
-                    <!--<a href="post.html">-->
-                        <!--<h2 class="post-title">-->
-                            <!--I believe every human has a finite number of heartbeats. I don't intend to waste any of mine.-->
-                        <!--</h2>-->
-                    <!--</a>-->
-                    <!--<p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on September 18, 2014</p>-->
-                <!--</div>-->
-                <!--<hr>-->
-                <!--<div class="post-preview">-->
-                    <!--<a href="post.html">-->
-                        <!--<h2 class="post-title">-->
-                            <!--Science has not yet mastered prophecy-->
-                        <!--</h2>-->
-                        <!--<h3 class="post-subtitle">-->
-                            <!--We predict too much for the next year and yet far too little for the next ten.-->
-                        <!--</h3>-->
-                    <!--</a>-->
-                    <!--<p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on August 24, 2014</p>-->
-                <!--</div>-->
-                <!--<hr>-->
-                <!--<div class="post-preview">-->
-                    <!--<a href="post.html">-->
-                        <!--<h2 class="post-title">-->
-                            <!--Failure is not an option-->
-                        <!--</h2>-->
-                        <!--<h3 class="post-subtitle">-->
-                            <!--Many say exploration is part of our destiny, but it’s actually our duty to future generations.-->
-                        <!--</h3>-->
-                    <!--</a>-->
-                    <!--<p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on July 8, 2014</p>-->
-                <!--</div>-->
-                <hr>
+                <button ng-click="isHidden= true">Hide</button>
+                    <h2 class="post-title">
+                        {{post.title}}
+                    </h2>
+                    <h3 class="post-subtitle">
+                        {{post.subtitle}}
+                    </h3>
+                <p class="post-meta">{{post.date}}</p>
+                <p>{{post.body}}</p>
             </div>
         </div>
-    </div>
-
     <hr>
-
+    <!--                    <div class="post-preview">
+                            <a href="post.html">
+                                <h2 class="post-title">
+                                    I believe every human has a finite number of heartbeats. I don't intend to waste any of mine.
+                                </h2>
+                            </a>
+                            <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on September 18, 2014</p>
+                        </div>
+                        <hr>
+                        <div class="post-preview">
+                            <a href="post.html">
+                                <h2 class="post-title">
+                                    Science has not yet mastered prophecy
+                                </h2>
+                                <h3 class="post-subtitle">
+                                    We predict too much for the next year and yet far too little for the next ten.
+                                </h3>
+                            </a>
+                            <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on August 24, 2014</p>
+                        </div>
+                        <hr>
+                        <div class="post-preview">
+                            <a href="post.html">
+                                <h2 class="post-title">
+                                    Failure is not an option
+                                </h2>
+                                <h3 class="post-subtitle">
+                                    Many say exploration is part of our destiny, but it’s actually our duty to future generations.
+                                </h3>
+                            </a>
+                            <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on July 8, 2014</p>
+                        </div>-->
     <!-- Footer -->
     <footer>
         <div class="container">
