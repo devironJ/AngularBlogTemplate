@@ -96,6 +96,16 @@
         </div>
     </header>
     <!-- Main Content -->
+    <div class="container" ng-controller="EditorController">
+        Sort by:
+        <select ng-model="ordering">
+            <option value="title">Alphabetical</option>
+            <option value="date">Newest</option>
+            <option value="-date">Oldest</option>
+        </select>
+        <hr>
+        <br><br>
+    </div>
     <div ng-view></div>
     <hr>
     <!--                    <div class="post-preview">
