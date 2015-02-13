@@ -17,7 +17,18 @@ app.controller("MainController",["$scope","$firebase", function($scope, $firebas
         post.hide = true;
     };
 
+    var getCurrentDate = function(){
+        var today = new Date();
+        var day = today.getDate(); //dd
+        var monthNum = today.getMonth();
+        var year = today.getFullYear(); //yyyy
+        var monthArray = ["January" , "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        var stringDate = monthArray[monthNum] + " " + day + ", " + year;
+        console.log(stringDate);
+        return stringDate
+    };
     $scope.addPost=function(){
+        $scope.post.date = getCurrentDate();
         $scope.myPosts.$add($scope.post);
         $scope.post = {};
     }
