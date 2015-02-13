@@ -1,36 +1,22 @@
+'use strict';
 /**
- * Created by Devon on 2/11/2015.
+ * Created by Devon on 2/13/2015.
  */
+var blogApp = angular.module("blogApp",['ngRoute','blogAppControllers']);
 
-var app = angular.module("blogApp",["firebase", "ngAnimate"]);
-
-app.controller("MainController",["$scope","$firebase", function($scope, $firebase){
-    $scope.ordering = "date";
-    var ref = new Firebase("https://sodpictureblog.firebaseio.com/");
-    //object that gets information from a database
-    var sync = $firebase(ref);
-
-    //use $scope to check for 2-way binding
-    $scope.myPosts= sync.$asArray();
-
-    $scope.hide=function(post){
-        post.hide = true;
-    };
-
-    var getCurrentDate = function(){
-        var today = new Date();
-        var day = today.getDate(); //dd
-        var monthNum = today.getMonth();
-        var year = today.getFullYear(); //yyyy
-        var monthArray = ["January" , "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-        var stringDate = monthArray[monthNum] + " " + day + ", " + year;
-        console.log(stringDate);
-        return stringDate
-    };
-    $scope.addPost=function(){
-        $scope.post.date = getCurrentDate();
-        $scope.myPosts.$add($scope.post);
-        $scope.post = {};
-    }
+//***Routers can only be injected into config functions ***
+//$routeprovider is the argument for angular route
+blogApp.config(['$routeProvider',function($routeProvider){
+    //first time page runs through, hits the otherwise and goes to '/phones'?
+    $routeProvider.when("/editor", {
+        templateUrl: 'view1/view1.html',
+        controller: "EditorController"
+    }).
+        when('/gridview',{
+            templateUrl: 'partials/phone-detail.html',
+            controller: 'PhoneDetailCtrl'
+        }).
+        otherwise({
+            redirectTo: '/editor'
+        });
 }]);
-

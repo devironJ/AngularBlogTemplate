@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div class="container">
+    Sort by:
+    <select ng-model="ordering">
+        <option value="title">Alphabetical</option>
+        <option value="date">Newest</option>
+        <option value="-date">Oldest</option>
+    </select>
+    <hr>
+    <br><br>
+</div>
+<div class="row">
+    <div class="col-md-2 editor">
+        <button ng-click="ShowHide=!ShowHide">Show/Hide Editor</button><br>
+        <div class="showHideAnimation" ng-init="ShowHide = false" ng-hide="ShowHide">
+            <button ng-click="addPost()">Add Post</button><br>
+            New Title:<br> <input type='text' ng-model="post.title"><br>
+            New Subtitle: <br><input type='text' ng-model="post.subtitle"><br>
+            Body: <br><textarea rows="8" columns="80" type="text" ng-model="post.body"></textarea>
+        </div>
+    </div>
+    <div class="post-preview">
+        <h2 class=""post-title">
+        {{post.title}}
+        </h2>
+        <h3 class="post-subtitle">
+            {{post.subtitle}}
+            <br>
+        </h3>
+        <p>{{post.body}}</p>
+    </div>
+</div>
+<div class="container">
+    <!--my-hide-animation and ng-hide-->
+    <div class="post-preview, my-hide-animation" ng-init = "isHidden=false"  ng-hide="isHidden" ng-repeat= "post in myPosts | orderBy: ordering">
+        <br>
+
+        <button ng-click="isHidden= true">Hide</button>
+        <h2 class="post-title">
+            {{post.title}}
+        </h2>
+        <h3 class="post-subtitle">
+            {{post.subtitle}}
+        </h3>
+        <p class="post-meta">{{post.date}}</p>
+        <p>{{post.body}}</p>
+    </div>
+</div>
+</body>
+</html>

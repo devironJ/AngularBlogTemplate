@@ -11,10 +11,12 @@
     <!-- AngularJS -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular-route.min.js"></script>
     <!-- Firebase -->
     <script src="https://cdn.firebase.com/js/client/2.0.4/firebase.js"></script>
     <!-- AngularFire -->
     <script src="https://cdn.firebase.com/libs/angularfire/0.9.2/angularfire.min.js"></script>
+    <script src="js/controllers.js"></script>
     <script src="js/app.js"></script>
     <link rel="stylesheet" href="style.css">
 
@@ -93,60 +95,8 @@
             </div>
         </div>
     </header>
-
     <!-- Main Content -->
-    <div class="container" ng-controller="MainController">
-        Sort by:
-        <select ng-model="ordering">
-            <option value="title">Alphabetical</option>
-            <option value="date">Newest</option>
-            <option value="-date">Oldest</option>
-        </select>
-        <hr>
-        <br><br>
-    </div>
-        <div class="row">
-            <div class="col-md-2 editor">
-                <button ng-click="ShowHide=!ShowHide">Show/Hide Editor</button><br>
-                <div class="showHideAnimation" ng-init="ShowHide = false" ng-hide="ShowHide">
-                    <button ng-click="addPost()">Add Post</button><br>
-                    New Title:<br> <input type='text' ng-model="post.title"><br>
-                    New Subtitle: <br><input type='text' ng-model="post.subtitle"><br>
-                    Body: <br><textarea rows="8" columns="80" type="text" ng-model="post.body"></textarea>
-                </div>
-            </div>
-            <div class="post-preview">
-                <h2 class=""post-title">
-                {{post.title}}
-                </h2>
-                <h3 class="post-subtitle">
-                    {{post.subtitle}}
-                    <br>
-                </h3>
-                <p>{{post.body}}</p>
-            </div>
-        </div>
-        <div class="container" ng-controller="MainController">
-                <!--my-hide-animation and ng-hide-->
-            <div class="post-preview, my-hide-animation" ng-init = "isHidden=false"  ng-hide="isHidden" ng-repeat= "post in myPosts | orderBy: ordering">
-                <br>
-                <!--<div ng-hide="post.hide">-->
-                <!--<button ng-click="hide(post)">Hide</button>-->
-
-                <!--<div ng-class="{slideHide: isHidden}">-->
-                <!--<button ng-click="isHidden = true;">Hide</button>-->
-
-                <button ng-click="isHidden= true">Hide</button>
-                    <h2 class="post-title">
-                        {{post.title}}
-                    </h2>
-                    <h3 class="post-subtitle">
-                        {{post.subtitle}}
-                    </h3>
-                <p class="post-meta">{{post.date}}</p>
-                <p>{{post.body}}</p>
-            </div>
-        </div>
+    <div ng-view></div>
     <hr>
     <!--                    <div class="post-preview">
                             <a href="post.html">
