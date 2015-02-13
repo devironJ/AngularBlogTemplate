@@ -103,12 +103,15 @@
             <option value="-date">Oldest</option>
         </select>
         <hr>
-        <button ng-click="addPost()">Add Post</button>
-        <br>
-        New Title: <input type='text' ng-model="post.title">
-        New Subtitle: <input type='text' ng-model="post.subtitle">
-        <br>
-        Body: <textarea rows="8" columns="200" type="text" ng-model="post.body"></textarea>
+        <button ng-click="ShowHide=!ShowHide">Show/Hide Editor</button>
+        <br><br>
+        <div class="editor, showHideAnimation" ng-init="ShowHide = false" ng-hide="ShowHide">
+            <button ng-click="addPost()">Add Post</button>
+            New Title: <input type='text' ng-model="post.title">
+            New Subtitle: <input type='text' ng-model="post.subtitle">
+            <br>
+            Body: <textarea rows="8" columns="200" type="text" ng-model="post.body"></textarea>
+        </div>
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-preview">
