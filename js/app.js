@@ -14,7 +14,7 @@ blogApp.config(['$routeProvider',function($routeProvider){
     }).
         when('/gridview',{
             templateUrl: 'view2/view2.html',
-            controller: 'GridController'
+            controller: 'EditorController'
         }).
         otherwise({
             redirectTo: '/editor'

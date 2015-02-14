@@ -46,12 +46,13 @@ blogAppControllers.controller("EditorController",["$scope","$firebase", "sortFac
     }
 }]);
 
-blogAppControllers.controller("GridController",["$scope,","$firebase", function($scope,$firebase){
-    var ref = new Firebase("https://sodpictureblog.firebaseio.com/");
-    var sync = $firebase(ref);
-    $scope.myPosts= sync.$asArray();
-    console.log($scope.myPosts);
-}]);
+//****TRIED TO CALL VIEW2 WITH GRID CONTROLLER BELOW BUT DID NOT WORK, WORKS WITH EDITORCONTROLLER WHY? SHOULD A SERVICE BE USED HERE?
+//blogAppControllers.controller("GridController",["$scope,","$firebase", "sortFactory", function($scope,$firebase, sortFactory){
+//    var ref = new Firebase("https://sodpictureblog.firebaseio.com/");
+//    var sync = $firebase(ref);
+//    $scope.myPosts= sync.$asArray();
+//    console.log($scope.myPosts);
+//}]);
 
 //blogAppControllers.controller("SortController",["$scope", 'sortFactory', function($scope, sortFactory){
 //    $scope.ordering = 'date';
