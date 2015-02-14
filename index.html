@@ -97,17 +97,19 @@
         </div>
     </header>
     <!-- Main Content -->
-    <div class="container" ng-controller="EditorController">
-        Sort by:
-        <select ng-model="ordering">
-            <option value="title">Alphabetical</option>
-            <option value="date">Newest</option>
-            <option value="-date">Oldest</option>{
-        </select>
-        <hr>
-        <br><br>
-        <!--ng-view needs to sit inside the same div so the controller reference is the same-->
-    <div ng-view></div>
+    <div ng-controller="EditorController">
+        <div class="container">
+            Sort by:
+            <select ng-model="ordering">
+                <option value="title">Alphabetical</option>
+                <option value="date">Newest</option>
+                <option value="-date">Oldest</option>{
+            </select>
+            <hr>
+            <br><br>
+        </div>
+            <!--ng-view needs to sit inside the same div so the controller reference is the same and does not create different controller instances for both-->
+        <div ng-view></div>
     </div>
     <hr>
     <!--                    <div class="post-preview">
