@@ -46,6 +46,13 @@ blogAppControllers.controller("EditorController",["$scope","$firebase", "sortFac
     }
 }]);
 
+blogAppControllers.controller("GridController",["$scope,","$firebase", function($scope,$firebase){
+    var ref = new Firebase("https://sodpictureblog.firebaseio.com/");
+    var sync = $firebase(ref);
+    $scope.myPosts= sync.$asArray();
+    console.log($scope.myPosts);
+}]);
+
 //blogAppControllers.controller("SortController",["$scope", 'sortFactory', function($scope, sortFactory){
 //    $scope.ordering = 'date';
 //

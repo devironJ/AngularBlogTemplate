@@ -1,0 +1,16 @@
+<div class="container">
+    <div class ="row">
+        <div class="col-md-4" ng-repeat="post in myPosts | orderBy: ordering">
+            <div class="thumbnail">
+                <img src="http://placehold.it/800x500" alt="">
+                <div class="caption">
+                    <h3>{{post.title}}</h3>
+                    <p>{{post.subtitle}}</p>
+                    <p>
+                        <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
