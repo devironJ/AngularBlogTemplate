@@ -18,6 +18,7 @@
     <script src="https://cdn.firebase.com/libs/angularfire/0.9.2/angularfire.min.js"></script>
     <script src="js/controllers.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/factories.js"></script>
     <link rel="stylesheet" href="style.css">
 
     <title>Blog With Angular and Firebase</title>
@@ -101,12 +102,13 @@
         <select ng-model="ordering">
             <option value="title">Alphabetical</option>
             <option value="date">Newest</option>
-            <option value="-date">Oldest</option>
+            <option value="-date">Oldest</option>{
         </select>
         <hr>
         <br><br>
-    </div>
+        <!--ng-view needs to sit inside the same div so the controller reference is the same-->
     <div ng-view></div>
+    </div>
     <hr>
     <!--                    <div class="post-preview">
                             <a href="post.html">

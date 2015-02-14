@@ -2,10 +2,22 @@
  * Created by Devon on 2/11/2015.
  */
 
-var blogAppControllers = angular.module("blogAppControllers",["firebase", "ngAnimate"]);
+var blogAppControllers = angular.module("blogAppControllers",["firebase", "ngAnimate","blogAppFactories"]);
 
-blogAppControllers.controller("EditorController",["$scope","$firebase", function($scope, $firebase){
-    $scope.ordering = "date";
+blogAppControllers.controller("EditorController",["$scope","$firebase", "sortFactory", function($scope, $firebase, sortFactory){
+    //$scope.ordering = "date";
+    //sortFactory.setSorter($scope.ordering);
+    //console.log("First Order: " + $scope.ordering);
+    //$scope.$apply(
+    //    function(){
+    //        $scope.ordering= sortFactory.getSorter();
+    //        console.log("Apply: " + $scope.ordering);
+    //    }
+    //);
+    //console.log("Second Order: " + $scope.ordering);
+    //$scope.ordering=sortFactory.getSorter();
+    //console.log($scope.ordering);
+
     var ref = new Firebase("https://sodpictureblog.firebaseio.com/");
     //object that gets information from a database
     var sync = $firebase(ref);
@@ -34,3 +46,16 @@ blogAppControllers.controller("EditorController",["$scope","$firebase", function
     }
 }]);
 
+//blogAppControllers.controller("SortController",["$scope", 'sortFactory', function($scope, sortFactory){
+//    $scope.ordering = 'date';
+//
+//    $scope.sortClicked = function(sort){
+//        $scope.ordering = sort;
+//    };
+//    $scope.$watch($scope.ordering, function(){
+//        sortFactory.setSorter($scope.ordering);
+//        console.log($scope.ordering);
+//    });
+//
+//    //sortFactory.setSorter($scope.ordering);
+//}]);
