@@ -2,9 +2,9 @@
  * Created by Devon on 2/11/2015.
  */
 
-var blogAppControllers = angular.module("blogAppControllers",["firebase", "ngAnimate","blogAppFactories"]);
+var blogAppControllers = angular.module("blogAppControllers",["firebase", "ngAnimate","blogAppServices"]);
 
-blogAppControllers.controller("EditorController",["$scope","$firebase", "sortFactory", function($scope, $firebase, sortFactory){
+blogAppControllers.controller("EditorController",["$scope","$firebase","FirebaseGet", function($scope, $firebase, FirebaseGet){
     //$scope.ordering = "date";
     //sortFactory.setSorter($scope.ordering);
     //console.log("First Order: " + $scope.ordering);
@@ -18,12 +18,15 @@ blogAppControllers.controller("EditorController",["$scope","$firebase", "sortFac
     //$scope.ordering=sortFactory.getSorter();
     //console.log($scope.ordering);
 
-    var ref = new Firebase("https://sodpictureblog.firebaseio.com/");
-    //object that gets information from a database
-    var sync = $firebase(ref);
 
-    //use $scope to check for 2-way binding
-    $scope.myPosts= sync.$asArray();
+    ////added to a factory
+    //var ref = new Firebase("https://sodpictureblog.firebaseio.com/");
+    ////object that gets information from a database
+    //var sync = $firebase(ref);
+    //
+    ////use $scope to check for 2-way binding
+    //$scope.myPosts= sync.$asArray();
+    $scope.myPosts = FirebaseGet.pullFireBase();
 
     $scope.hide=function(post){
         post.hide = true;
@@ -46,24 +49,19 @@ blogAppControllers.controller("EditorController",["$scope","$firebase", "sortFac
     }
 }]);
 
-//****TRIED TO CALL VIEW2 WITH GRID CONTROLLER BELOW BUT DID NOT WORK, WORKS WITH EDITORCONTROLLER WHY? SHOULD A SERVICE BE USED HERE?
-//blogAppControllers.controller("GridController",["$scope,","$firebase", "sortFactory", function($scope,$firebase, sortFactory){
-//    var ref = new Firebase("https://sodpictureblog.firebaseio.com/");
-//    var sync = $firebase(ref);
-//    $scope.myPosts= sync.$asArray();
-//    console.log($scope.myPosts);
-//}]);
 
-//blogAppControllers.controller("SortController",["$scope", 'sortFactory', function($scope, sortFactory){
-//    $scope.ordering = 'date';
+blogAppControllers.controller("GridController",["$scope", "$firebase", "FirebaseGet", function($scope, $firebase, FirebaseGet){
+    $scope.myPosts = FirebaseGet.pullFireBase();
+}]);
+
+//$scope.ordering = 'date';
 //
-//    $scope.sortClicked = function(sort){
-//        $scope.ordering = sort;
-//    };
-//    $scope.$watch($scope.ordering, function(){
-//        sortFactory.setSorter($scope.ordering);
-//        console.log($scope.ordering);
-//    });
-//
-//    //sortFactory.setSorter($scope.ordering);
-//}]);
+//$scope.sortClicked = function(sort){
+//    $scope.ordering = sort;
+//};
+//$scope.$watch($scope.ordering, function(){
+//    sortFactory.setSorter($scope.ordering);
+//    console.log($scope.ordering);
+//});
+
+//sortFactory.setSorter($scope.ordering);
