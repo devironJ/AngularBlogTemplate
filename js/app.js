@@ -2,7 +2,7 @@
 /**
  * Created by Devon on 2/13/2015.
  */
-var blogApp = angular.module("blogApp",['ngRoute','blogAppControllers']);
+var blogApp = angular.module("blogApp",['ngRoute','blogAppControllers', 'blogAppFilters']);
 
 //***Routers can only be injected into config functions ***
 //$routeprovider is the argument for angular route
@@ -15,6 +15,10 @@ blogApp.config(['$routeProvider',function($routeProvider){
         when('/gridview',{
             templateUrl: 'view2/view2.html',
             controller: "GridController"
+        }).
+        when('/listview',{
+            templateUrl: 'view3/view3.html',
+            controller: "ListController"
         }).
         otherwise({
             redirectTo: '/editor'
