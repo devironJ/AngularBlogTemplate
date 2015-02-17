@@ -25,6 +25,7 @@
         <br>
 
         <button ng-click="isHidden= true">Hide</button>
+        <button ng-click="isHidden = true; myPosts.$remove(post)" title="Delete Post"><i class="trash icon"></i></button>
         <h2 class="post-title">
             {{post.title}}
         </h2>

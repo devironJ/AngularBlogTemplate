@@ -27,7 +27,6 @@ blogAppControllers.controller("EditorController",["$scope","$firebase","Firebase
     ////use $scope to check for 2-way binding
     //$scope.myPosts= sync.$asArray();
     $scope.myPosts = FirebaseGet.pullFireBase();
-
     $scope.hide=function(post){
         post.hide = true;
     };
