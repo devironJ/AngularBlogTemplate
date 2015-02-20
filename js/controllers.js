@@ -5,8 +5,21 @@
 var blogAppControllers = angular.module("blogAppControllers",["firebase", "ngAnimate","blogAppServices"]);
 
 blogAppControllers.controller("EditorController",["$scope","$firebase","FirebaseGet", function($scope, $firebase, FirebaseGet){
-    $scope.editOn = true;
     $scope.myPosts = FirebaseGet.pullFireBase();
+
+    //holds the original blog post data when the edit button is clicked, just in case of reset
+    $scope.holdData = function(post) {
+        $scope.holdTitle = angular.copy(post.title);
+        $scope.holdSubtitle = angular.copy(post.subtitle);
+        $scope.holdBody = angular.copy(post.body);
+    };
+
+    //recalls and repopulates the original blog post data before editing occurred
+    $scope.reset = function(post){
+        post.title = angular.copy($scope.holdTitle);
+        post.subtitle = angular.copy($scope.holdSubtitle);
+        post.body = angular.copy($scope.holdBody);
+    };
 
     $scope.hide=function(post){
         post.hide = true;
