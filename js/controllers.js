@@ -5,30 +5,28 @@
 var blogAppControllers = angular.module("blogAppControllers",["firebase", "ngAnimate","blogAppServices"]);
 
 blogAppControllers.controller("EditorController",["$scope","$firebase","FirebaseGet", function($scope, $firebase, FirebaseGet){
-    //$scope.ordering = "date";
-    //sortFactory.setSorter($scope.ordering);
-    //console.log("First Order: " + $scope.ordering);
-    //$scope.$apply(
-    //    function(){
-    //        $scope.ordering= sortFactory.getSorter();
-    //        console.log("Apply: " + $scope.ordering);
-    //    }
-    //);
-    //console.log("Second Order: " + $scope.ordering);
-    //$scope.ordering=sortFactory.getSorter();
-    //console.log($scope.ordering);
-
-
-    ////added to a factory
-    //var ref = new Firebase("https://sodpictureblog.firebaseio.com/");
-    ////object that gets information from a database
-    //var sync = $firebase(ref);
-    //
-    ////use $scope to check for 2-way binding
-    //$scope.myPosts= sync.$asArray();
+    $scope.editOn = true;
     $scope.myPosts = FirebaseGet.pullFireBase();
+
     $scope.hide=function(post){
         post.hide = true;
+    };
+
+    //this function updates the firebase with edits upon click
+    $scope.saveEdits = function(post){
+
+        //reference to the exact post being edited
+        var ref = new Firebase("https://sodpictureblog.firebaseio.com/" + post.$id);
+        var sync = $firebase(ref);
+        $scope.edit = post;
+
+        //angularfire update code
+        sync.$update({title: $scope.edit.title, subtitle: $scope.edit.subtitle, body: $scope.edit.body}).then(function(ref) {
+            console.log("SUCCESS: "+ ref.key());    // bar
+        }, function(error) {
+            console.log("Error: "+ error);
+        });
+
     };
 
     var getCurrentDate = function(){
@@ -45,6 +43,8 @@ blogAppControllers.controller("EditorController",["$scope","$firebase","Firebase
         $scope.myPosts.$add($scope.post);
         $scope.post = {};
     }
+
+
 }]);
 
 

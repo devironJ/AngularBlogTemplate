@@ -2,6 +2,7 @@
 /**
  * Created by Devon on 2/13/2015.
  */
+
 var blogApp = angular.module("blogApp",['ngRoute','blogAppControllers', 'blogAppFilters']);
 
 //***Routers can only be injected into config functions ***
@@ -24,3 +25,12 @@ blogApp.config(['$routeProvider',function($routeProvider){
             redirectTo: '/editor'
         });
 }]);
+
+blogApp.directive('dropDownMenu', function(){
+    return {
+        restrict: "A",
+        link: function(scope, element, attrs){
+            $(element).blogApp(scope.$eval(attrs.dropDownMenu));
+        }
+    };
+});

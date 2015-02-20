@@ -1,3 +1,15 @@
+
+#format-dropDownMenu-options{
+    display: none;
+}
+.resizedIMG{
+    height: 200px;
+    width: 200px;
+}
+
+.resizedBox{
+    height: 550px;
+}
 .slideHide{
     background-color: yellow;
 }

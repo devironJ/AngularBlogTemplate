@@ -1,11 +1,11 @@
 <div class="row">
-    <div class="col-md-2 editor">
-        <button ng-click="ShowHide=!ShowHide">Show/Hide Editor</button><br>
-        <div class="showHideAnimation" ng-init="ShowHide = false" ng-hide="ShowHide">
-            <button ng-click="addPost()">Add Post</button><br>
+    <div class="col-md-2 editor" ng-init="editOn=true">
+        <button ng-click="ShowHide=!ShowHide">Create New Post</button><br><br>
+        <div class="showHideAnimation" ng-init="ShowHide = true" ng-hide="ShowHide">
             New Title:<br> <input type='text' ng-model="post.title"><br>
             New Subtitle: <br><input type='text' ng-model="post.subtitle"><br>
-            Body: <br><textarea rows="8" columns="80" type="text" ng-model="post.body"></textarea>
+            Body: <br><textarea rows="8" columns="80" type="text" ng-model="post.body"></textarea><br>
+            <button ng-click="addPost()">Add Post</button>
         </div>
     </div>
     <div class="container post-preview">
@@ -25,14 +25,26 @@
         <br>
 
         <button ng-click="isHidden= true">Hide</button>
-        <button ng-click="isHidden = true; myPosts.$remove(post)" title="Delete Post"><i class="trash icon"></i></button>
-        <h2 class="post-title">
-            {{post.title}}
-        </h2>
-        <h3 class="post-subtitle">
-            {{post.subtitle}}
-        </h3>
-        <p class="post-meta">{{post.date | DateFilter}}</p>
-        <p>{{post.body}}</p>
+        <button ng-click="editOn= !editOn" title="Edit Post"><i class="edit icon"></i></button><br><br>
+        <button ng-hide = "editOn" title="Save Post" ng-click="saveEdits(post)">Save</button>
+        <button ng-hide = "editOn" title="Reset">Reset</button>
+        <button ng-hide = "editOn" ng-click="isHidden = true; myPosts.$remove(post)" title="Delete Post"><i class="trash icon"></i></button>
+
+        <div class="postView" ng-show="editOn">
+            <h2 class="post-title">
+                {{post.title}}
+            </h2>
+            <h3 class="post-subtitle">
+                {{post.subtitle}}
+            </h3>
+            <p class="post-meta">{{post.date | DateFilter}}</p>
+            <p>{{post.body}}</p>
+        </div>
+
+        <form class="editView" ng-show="!editOn">
+            <h3><input ng-model = "post.title" style= "width: 450px" type="text" value="{{post.title}}"></h3>
+            <h3> <input ng-model = "post.subtitle" style="width: 650px" type="text" value="{{post.subtitle}}"></h3>
+            <p><textarea ng-model="post.body" style="width: 850px; height:400px" type="text">{{post.body}}</textarea></p>
+        </form>
     </div>
 </div>
