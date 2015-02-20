@@ -28,6 +28,8 @@
 
         <!--holds original blog post data on click in case reset is initiated-->
         <button ng-click="editOff= !editOff; holdData(post)" title="Edit Post"><i class="edit icon"></i></button><br><br>
+
+        <!--editing post buttons, save, reset, delete, shows when edit is clicked-->
         <button ng-hide = "editOff" title="Save Post" ng-click="saveEdits(post); editOn=!editOn">Save</button>
         <button ng-hide = "editOff" ng-click="reset(post);" title="Reset">Reset</button>
         <button ng-hide = "editOff" ng-click="isHidden = true; myPosts.$remove(post)" title="Delete Post"><i class="trash icon"></i></button>
@@ -43,6 +45,7 @@
             <p>{{post.body}}</p>
         </div>
 
+        the editing view
         <form class="editView" ng-hide="editOff">
             <h3><input ng-model = "post.title" style= "width: 450px" type="text" value="post.title"></h3>
             <h3> <input ng-model = "post.subtitle" style="width: 650px" type="text" value="post.subtitle"></h3>
